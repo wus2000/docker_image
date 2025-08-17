@@ -120,8 +120,8 @@ RUN if [ "$GIT_REPO_CHECK" != "0" ]; then bash tools/check_repo.sh ; fi
 
 # Build the vLLM wheel. Caching mechanisms like sccache are removed for compatibility.
 RUN rm -rf .deps && \
-    export MAX_JOBS=4 && \
-    export NVCC_THREADS=1 && \
+    export MAX_JOBS=64 && \
+    export NVCC_THREADS=32 && \
     mkdir -p .deps && \
     python3 setup.py bdist_wheel --dist-dir=dist --py-limited-api=cp38
 
